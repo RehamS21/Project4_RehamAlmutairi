@@ -1,7 +1,6 @@
 package com.example.healthcaresystem_project4.Service;
 
 import com.example.healthcaresystem_project4.Api.ApiException;
-import com.example.healthcaresystem_project4.Model.Patient;
 import com.example.healthcaresystem_project4.Model.Room;
 import com.example.healthcaresystem_project4.Repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
