@@ -29,8 +29,8 @@ public class PatientService {
 
         oldPatient.setName(patient.getName());
         oldPatient.setAge(patient.getAge());
-        oldPatient.setPhoneNo(patient.getPhoneNo());
-        oldPatient.setPatientMoney(patient.getPatientMoney());
+        oldPatient.setPhone(patient.getPhone());
+        oldPatient.setMoney(patient.getMoney());
         oldPatient.setAppointment(patient.getAppointment());
 
 
@@ -64,17 +64,19 @@ public class PatientService {
         return patientRepository.getAllPatientWithAppintment();
     }
 
-    public void CalculateBill(Integer id){
-        Patient patient = patientRepository.findPatientById(id);
-        if (patient == null)
-            throw new ApiException("patient id is wrong");
 
 
-    }
+//    public void CalculateBill(Integer id){
+//        Patient patient = patientRepository.findPatientById(id);
+//        if (patient == null)
+//            throw new ApiException("patient id is wrong");
+//
+//
+//    }
 
-    public void discountBillPrice_ForPaitientChild(){
-        Patient patient = patientRepository.discountBillPatient();
-        double billDiscount = patient.getBillPrice() * 0.15;
-        patient.setBillPrice((patient.getBillPrice() - billDiscount));
-    }
+//    public void discountBillPrice_ForPaitientChild(){
+//        Patient patient = patientRepository.discountBillPatient();
+//        double billDiscount = patient.getBillPrice() * 0.15;
+//        patient.setBillPrice((patient.getBillPrice() - billDiscount));
+//    }
 }

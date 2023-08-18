@@ -1,7 +1,8 @@
 package com.example.healthcaresystem_project4.Model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,16 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty(message = "patient name must not empty")
-    @Column(columnDefinition = "varchar(20) not null")
-    private String patientName;
+
+    @NotNull(message = "patient id must not empty")
+    @Column(columnDefinition = "int unique not null")
+    private Integer patientid;
+
+
+    @NotNull(message = "The bill price must not null")
+    @Positive
+    @Column(columnDefinition = "int not null")
+    private Integer billprice;
 
 
 }

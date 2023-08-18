@@ -22,7 +22,7 @@ public class Patient {
     @NotEmpty(message = "patient phone number must not null")
     @Pattern(regexp = "^(009665|9665|\\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$")
     @Column(columnDefinition = "varchar(10) unique not null")
-    private String phoneNo;
+    private String phone;
 
     @NotNull(message = "age must not null")
     @Positive(message = "age must be positive")
@@ -32,13 +32,8 @@ public class Patient {
     @NotNull(message = "patient money must not null")
     @Positive(message = "patient salary must be a positive")
     @Column(columnDefinition = "int not null")
-    private Integer PatientMoney;
+    private Integer money;
 
-    @Positive(message = "the bill price must a positive number")
-    @Column(columnDefinition = "double default 0")
-    private double billPrice;
-
-    @AssertFalse
-    @Column(columnDefinition = "BOOLEAN not null default false")
-    private Boolean appointment;
+    @Column(columnDefinition = "BOOLEAN default false")
+    private Boolean appointment = false;
 }

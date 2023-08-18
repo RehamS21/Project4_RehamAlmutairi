@@ -19,6 +19,6 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
 //    @Query("select p from Patient p where p.PatientMoney")
 //    Boolean checkPatientMoney(Integer bill, Double patientMoney);
 
-    @Query("select p from Patient p where p.age < 18")
-    Patient discountBillPatient();
+    @Query("select p from Patient p where p.id =?1 and p.age < 18")
+    Patient discountBillPatient(Integer id);
 }

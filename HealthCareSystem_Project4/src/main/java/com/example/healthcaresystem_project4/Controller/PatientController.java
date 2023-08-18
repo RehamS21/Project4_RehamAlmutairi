@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
     private final PatientService patientService;
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity getAllPatients(){
         return ResponseEntity.status(200).body(patientService.getAllPatient());
     }
 
     @PostMapping("/add")
-    public ResponseEntity addNewPatient(Patient patient){
+    public ResponseEntity addNewPatient(@RequestBody @Valid Patient patient){
         patientService.addPatient(patient);
         return ResponseEntity.status(200).body(new ApiResponse("the patient '"+patient.getName() +"' added successfully"));
     }
