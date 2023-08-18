@@ -1,7 +1,10 @@
 package com.example.healthcaresystem_project4.Service;
 
 import com.example.healthcaresystem_project4.Api.ApiException;
+import com.example.healthcaresystem_project4.Api.ApiResponse;
+import com.example.healthcaresystem_project4.Model.Doctor;
 import com.example.healthcaresystem_project4.Model.Patient;
+import com.example.healthcaresystem_project4.Repository.DoctorRepository;
 import com.example.healthcaresystem_project4.Repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,12 +15,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatientService {
     private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
 
     public List<Patient> getAllPatient(){
         return patientRepository.findAll();
     }
 
     public void addPatient(Patient patient){
+        Doctor doctor = doctorRepository.findDoctorById(patient.getDoctorid());
+        if (doctor == null)
+            throw new ApiException("Sorry the doctor id is wrong");
+
         patientRepository.save(patient);
     }
 
@@ -26,6 +34,10 @@ public class PatientService {
 
         if (oldPatient == null)
             throw new ApiException("Sorry, patient id is wrong");
+
+        Doctor doctor = doctorRepository.findDoctorById(patient.getDoctorid());
+        if (doctor == null)
+            throw new ApiException("Sorry the doctor is wrong");
 
         oldPatient.setName(patient.getName());
         oldPatient.setAge(patient.getAge());
@@ -63,20 +75,15 @@ public class PatientService {
     public List<Patient> getAllPatentWithAppointment(){
         return patientRepository.getAllPatientWithAppintment();
     }
+    public List<Patient> patientsOrdered(){
+        List<Patient> patients = patientRepository.orderPatientByMoney();
+
+        if (patients.isEmpty())
+            throw new ApiException("Sorry , No patients exist");
+
+        return patients;
+    }
 
 
 
-//    public void CalculateBill(Integer id){
-//        Patient patient = patientRepository.findPatientById(id);
-//        if (patient == null)
-//            throw new ApiException("patient id is wrong");
-//
-//
-//    }
-
-//    public void discountBillPrice_ForPaitientChild(){
-//        Patient patient = patientRepository.discountBillPatient();
-//        double billDiscount = patient.getBillPrice() * 0.15;
-//        patient.setBillPrice((patient.getBillPrice() - billDiscount));
-//    }
 }

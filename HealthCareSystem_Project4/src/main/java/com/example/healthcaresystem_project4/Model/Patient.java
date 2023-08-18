@@ -36,4 +36,9 @@ public class Patient {
 
     @Column(columnDefinition = "BOOLEAN default false")
     private Boolean appointment = false;
+
+    @NotNull(message = "Doctor id must not be null")
+    @Positive
+    @Column(columnDefinition = "int  not null")
+    private Integer doctorid;
 }

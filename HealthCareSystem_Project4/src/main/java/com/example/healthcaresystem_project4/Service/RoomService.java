@@ -2,6 +2,7 @@ package com.example.healthcaresystem_project4.Service;
 
 import com.example.healthcaresystem_project4.Api.ApiException;
 import com.example.healthcaresystem_project4.Model.Room;
+import com.example.healthcaresystem_project4.Repository.PatientRepository;
 import com.example.healthcaresystem_project4.Repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoomService {
     private final RoomRepository roomRepository;
+    private final PatientRepository patientRepository;
 
     public List<Room> getAllRoom(){
         return roomRepository.findAll();
@@ -27,7 +29,7 @@ public class RoomService {
         if (oldRoom == null)
             throw new ApiException("Sorry, room id is wrong");
 
-        oldRoom.setType(room.getType());
+        oldRoom.setRoomtype(room.getRoomtype());
         oldRoom.setAvailability(room.getAvailability());
         oldRoom.setPatientId(room.getPatientId());
 
@@ -42,4 +44,8 @@ public class RoomService {
 
         roomRepository.delete(deleteRoom);
     }
+
+
+
+
 }

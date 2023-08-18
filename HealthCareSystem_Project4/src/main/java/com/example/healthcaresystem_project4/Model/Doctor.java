@@ -25,7 +25,7 @@ public class Doctor {
     // saudi phone number. reference : https://gist.github.com/homaily/8672499
     @Pattern(regexp = "^(009665|9665|\\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$")
     @Column(columnDefinition = "varchar(10) unique not null")
-    private String phoneNo;
+    private String phone;
     @NotNull(message = "doctor salary must not null")
     @Positive(message = "doctor salary must be a positive")
     @Column(columnDefinition = "int not null")

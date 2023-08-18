@@ -18,7 +18,12 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    // Our Exception
+    @ExceptionHandler(value = ClassCastException.class)
+    public ResponseEntity ClassCastException(ClassCastException e){
+        String message = e.getMessage();
+
+        return ResponseEntity.status(200).body(new ApiResponse(message));
+    }
     @ExceptionHandler(value = ApiException.class)
     public ResponseEntity ApiException(ApiException e){
         String message=e.getMessage();

@@ -48,5 +48,10 @@ public class PatientController {
         return ResponseEntity.status(200).body(patientService.getAllPatentWithAppointment());
     }
 
+    @GetMapping("order")
+    public ResponseEntity orderPatientAsec(){
+        return ResponseEntity.status(200).body(patientService.patientsOrdered());
+    }
+
 
 }
