@@ -46,5 +46,35 @@ public class PatientService {
         patientRepository.delete(deletePatient);
     }
 
+    public void appointmentBooking(Integer id){
+        Patient patient = patientRepository.findPatientById(id);
 
+        if (patient == null)
+            throw new ApiException("the patient id is wrong");
+
+        if(patient.getAppointment())
+            throw new ApiException("You have already an appointment");
+        else
+            patient.setAppointment(true);
+
+        patientRepository.save(patient);
+    }
+
+    public List<Patient> getAllPatentWithAppointment(){
+        return patientRepository.getAllPatientWithAppintment();
+    }
+
+    public void CalculateBill(Integer id){
+        Patient patient = patientRepository.findPatientById(id);
+        if (patient == null)
+            throw new ApiException("patient id is wrong");
+
+
+    }
+
+    public void discountBillPrice_ForPaitientChild(){
+        Patient patient = patientRepository.discountBillPatient();
+        double billDiscount = patient.getBillPrice() * 0.15;
+        patient.setBillPrice((patient.getBillPrice() - billDiscount));
+    }
 }

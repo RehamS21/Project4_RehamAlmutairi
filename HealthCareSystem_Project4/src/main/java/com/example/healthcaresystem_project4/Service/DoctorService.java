@@ -42,5 +42,4 @@ public class DoctorService {
         doctorRepository.delete(deleteDoctor);
     }
 
-
 }

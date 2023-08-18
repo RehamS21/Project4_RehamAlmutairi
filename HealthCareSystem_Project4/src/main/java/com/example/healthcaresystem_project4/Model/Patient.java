@@ -34,6 +34,10 @@ public class Patient {
     @Column(columnDefinition = "int not null")
     private Integer PatientMoney;
 
+    @Positive(message = "the bill price must a positive number")
+    @Column(columnDefinition = "double default 0")
+    private double billPrice;
+
     @AssertFalse
     @Column(columnDefinition = "BOOLEAN not null default false")
     private Boolean appointment;
