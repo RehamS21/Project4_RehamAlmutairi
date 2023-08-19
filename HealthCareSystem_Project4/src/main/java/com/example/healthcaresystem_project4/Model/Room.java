@@ -16,15 +16,14 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "the room type must not null")
-    @Column(columnDefinition = "varchar(3) not null, check( roomtype = 'emergency' or roomtype ='intensive care' or roomtype = 'operating' or roomtype = 'hypnosis')")
-    private String roomtype;
 
-    @Column(columnDefinition = "BOOLEAN not null default true")
-    private Boolean availability = true;
+    @NotEmpty(message = "the room type must not null")
+    @Column(columnDefinition = "varchar(30) not null, check( roomtype = 'emergency' or roomtype ='intensive care' or roomtype = 'operating' or roomtype = 'hypnosis')")
+    private String roomtype;
 
     @NotNull(message = "patient id must not null")
     @Positive
-    @Column(columnDefinition = "int not null")
+    // must be unique becuase no two paitent have a same room
+    @Column(columnDefinition = "int unique not null")
     private Integer patientId;
 }

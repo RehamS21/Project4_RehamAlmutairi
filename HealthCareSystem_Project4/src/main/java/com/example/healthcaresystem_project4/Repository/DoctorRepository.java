@@ -24,5 +24,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
     @Query("select d from Doctor d where d.id = ?1 and d.salary > 30000")
     Doctor dudcationDoctorSalary(Integer id);
 
+    @Query("select AVG(d.salary) from Doctor d")
+    Double doctorsAverageSalary();
+
 
 }

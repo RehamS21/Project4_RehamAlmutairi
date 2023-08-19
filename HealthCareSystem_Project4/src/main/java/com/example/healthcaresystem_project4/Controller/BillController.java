@@ -20,7 +20,7 @@ public class BillController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addNewPatient(@RequestBody @Valid Bill bill){
+    public ResponseEntity addNewBill(@RequestBody @Valid Bill bill){
         billService.addBill(bill);
         return ResponseEntity.status(200).body(new ApiResponse("the bill added successfully"));
     }

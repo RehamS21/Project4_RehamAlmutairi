@@ -33,8 +33,11 @@ public class RoomService {
         if (oldRoom == null)
             throw new ApiException("Sorry, room id is wrong");
 
+        Patient p = patientRepository.findPatientById(oldRoom.getPatientId());
+        if (p==null)
+            throw new ApiException("Sorry the patient id is wrong");
+
         oldRoom.setRoomtype(room.getRoomtype());
-        oldRoom.setAvailability(room.getAvailability());
         oldRoom.setPatientId(room.getPatientId());
 
         roomRepository.save(oldRoom);
@@ -49,4 +52,19 @@ public class RoomService {
         roomRepository.delete(deleteRoom);
     }
 
+    public List<Room> getBasedOnRoomType(String roomtype){
+        List<Room> roomList = roomRepository.basedOnRoomType(roomtype);
+
+        if (roomList.isEmpty())
+            throw new ApiException("Sorry the room type is wrong");
+
+        return roomList;
+
+    }
+
+    public List<Room> orderedRooms(){
+        List<Room> roomList = roomRepository.orderedRoom();
+
+        return roomList;
+    }
 }

@@ -12,8 +12,12 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
 
     Room findRoomById(Integer id);
 
-    @Query("select r from Room r where r.availability = true ")
-    List<Room> getRoomWithAvalilbility();
+    @Query("select r from Room r where r.roomtype =?1 ")
+    List<Room> basedOnRoomType(String roomtype);
+
+    @Query("select r from Room r order by r.roomtype asc ")
+    List<Room> orderedRoom();
+
 
 
 

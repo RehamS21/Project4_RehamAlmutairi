@@ -5,6 +5,7 @@ import com.example.healthcaresystem_project4.Model.Doctor;
 import com.example.healthcaresystem_project4.Repository.DoctorRepository;
 import com.example.healthcaresystem_project4.Repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.patterns.HandlerPointcut;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -111,6 +112,12 @@ public class DoctorService {
             throw new ApiException("Sorry no doctors exist");
 
         return doctors;
+    }
+
+    public Double doctorsAverageSalary(){
+        Double avg = doctorRepository.doctorsAverageSalary();
+
+        return avg;
     }
 
 
