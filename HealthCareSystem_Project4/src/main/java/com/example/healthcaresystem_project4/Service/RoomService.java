@@ -1,6 +1,7 @@
 package com.example.healthcaresystem_project4.Service;
 
 import com.example.healthcaresystem_project4.Api.ApiException;
+import com.example.healthcaresystem_project4.Model.Patient;
 import com.example.healthcaresystem_project4.Model.Room;
 import com.example.healthcaresystem_project4.Repository.PatientRepository;
 import com.example.healthcaresystem_project4.Repository.RoomRepository;
@@ -20,6 +21,9 @@ public class RoomService {
     }
 
     public void addRoom(Room room){
+        Patient p = patientRepository.findPatientById(room.getPatientId());
+        if (p == null)
+            throw new ApiException("Patient id is wrong");
         roomRepository.save(room);
     }
 
@@ -44,8 +48,5 @@ public class RoomService {
 
         roomRepository.delete(deleteRoom);
     }
-
-
-
 
 }

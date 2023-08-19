@@ -104,8 +104,8 @@ public class DoctorService {
     }
 
 
-    public List<Doctor> DoctorOrderdByPostion(){
-        List<Doctor> doctors = doctorRepository.orderSalaryByPosition();
+    public List<Doctor> DoctorOrderdByPostion(String position){
+        List<Doctor> doctors = doctorRepository.orderSalaryByPosition(position);
 
         if (doctors.isEmpty())
             throw new ApiException("Sorry no doctors exist");

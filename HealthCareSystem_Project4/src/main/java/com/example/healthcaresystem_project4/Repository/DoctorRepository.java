@@ -18,8 +18,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
     @Query("select max (d.salary) from Doctor d ")
     Double getDoctorWithHigherSalary();
 
-    @Query("select d from Doctor d where d.position = 'dentist' order by d.salary desc ")
-    List<Doctor> orderSalaryByPosition();
+    @Query("select d from Doctor d where d.position = ?1 order by d.salary desc ")
+    List<Doctor> orderSalaryByPosition(String position);
 
     @Query("select d from Doctor d where d.id = ?1 and d.salary > 30000")
     Doctor dudcationDoctorSalary(Integer id);

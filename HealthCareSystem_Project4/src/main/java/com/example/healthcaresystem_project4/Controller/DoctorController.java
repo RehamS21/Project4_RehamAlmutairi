@@ -66,9 +66,9 @@ public class DoctorController {
         return ResponseEntity.status(200).body(new ApiResponse("The salary after Insurance deduction = "+result));
     }
 
-    @GetMapping("order")
-    public ResponseEntity orderDoctorsSalaryByPosition(){
-        List<Doctor> doctors = doctorService.DoctorOrderdByPostion();
+    @GetMapping("order/{position}")
+    public ResponseEntity orderDoctorsSalaryByPosition(@PathVariable String position){
+        List<Doctor> doctors = doctorService.DoctorOrderdByPostion(position);
         return ResponseEntity.status(200).body(doctors);
     }
 
